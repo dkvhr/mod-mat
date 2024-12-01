@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 from mpl_toolkits.mplot3d import Axes3D
 from Examples import examples
+from Lissajous import animation
 
 def plot_2d_lissajous(a, b, w1, w2, phase, title):
     t = np.linspace(0, 30 * np.pi, 10000)
@@ -26,11 +27,15 @@ def plot_custom():
         w1 = float(simpledialog.askstring("Input", "Valor do w1="))
         w2 = float(simpledialog.askstring("Input", "Valor do w2="))
         phase = float(simpledialog.askstring("Input", "Valor da fase="))
+        plot_type = messagebox.askquestion("Animation", "plot animado?")
 
         if dimension_var.get() == "2D":
-            plot_2d_lissajous(a, b, w1, w2, phase, "Curva de Lissajous em 2d")
+            if plot_type == "yes":
+                create_lissajous_anim(a, b, w1, w2, phase, "curva de lissajous animada (Custom)")
+            else:
+                plot_2d_lissajous(a, b, w1, w2, phase, "curva de lissajous em 2D")
         elif dimension_var.get() == "3D":
-            #TODO
+            # TODO: adicionar coisas 3d
             pass
     except ValueError:
         message.showerror("Error", "Input fornecido eh invalido :(")
@@ -39,18 +44,24 @@ def plot_custom():
 def select_preset():
     selection = preset_var.get()
     if selection == "Major Third (2D)":
-        #plot_2d_lissajous(1, 1, np.pi, (5*np.pi) / 4, 10, "Major Third em 2D")
-        examples.major_third()
+        plot_type = messagebox.askquestion("animation", "quer um plot animado?")
+        if plot_type == "yes":
+            animation.create_lissajous_anim(1, 1, np.pi, (5*np.pi)/4, 10, "Major Third animado (2D)")
+        else:
+            examples.major_third()
     elif selection == "Tritone (2D)":
-        #plot_2d_lissajous(1, 1, np.pi, (64 * np.pi) / 45, 0, "Tritone em 2D")
-        examples.tritone()
+        plot_type = messagebox.askquestion("Animation", "quer um plot animado?")
+        if plot_type == "yes":
+            animation.create_lissajous_anim(1, 1, np.pi, (64*np.pi) / 45, 0, "Tritone (2D) animado")
+        else:
+            examples.tritone()
     elif selection == "Custom":
         plot_custom()
 
 def main():
     root = tk.Tk()
     root.title("Plot de curvas de Lissajous")
-    root.geometry("400x200")
+    root.geometry("800x400")
 
     dimension_label = ttk.Label(root, text="Selecione a dimensao: ")
     dimension_label.pack(pady=5)
