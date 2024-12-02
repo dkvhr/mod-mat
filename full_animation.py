@@ -37,13 +37,14 @@ theta = np.linspace(0, 30 * np.pi, 10000)
 
 def update(frame):
     # fazendo ela "mover"
-    phase = 2 * np.pi * frame / frames
-    x = A * np.sin(a * theta + phase)
-    y = B * np.sin(b * theta)
+    phase1 = 2*np.pi * frame / frames
+    phase2 = 4*np.pi * frame / frames
+    x = A * np.sin(a * theta + phase1)
+    y = B * np.sin(b * theta + phase2)
     line1.set_data(x, y) #curva de lissajous
 
-    x_wave = A * np.sin(a*t + phase)
-    y_wave = B * np.sin(b*t)
+    x_wave = A * np.sin(a*t + phase1)
+    y_wave = B * np.sin(b*t + phase2)
     line2.set_data(t, x_wave)
     line3.set_data(t, y_wave)
     return line1, line2, line3
