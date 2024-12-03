@@ -4,8 +4,8 @@ from matplotlib.animation import FuncAnimation
 
 A = 1
 B = 1
-a = 4
-b = 5
+a = 5
+b = 4
 fps = 120
 duration = 1
 frames = fps*duration
@@ -38,7 +38,8 @@ theta = np.linspace(0, 30 * np.pi, 10000)
 def update(frame):
     # fazendo ela "mover"
     phase1 = 2*np.pi * frame / frames
-    phase2 = 4*np.pi * frame / frames
+    #phase2 = 4*np.pi * frame / frames
+    phase2 = 0
     x = A * np.sin(a * theta + phase1)
     y = B * np.sin(b * theta + phase2)
     line1.set_data(x, y) #curva de lissajous

@@ -6,7 +6,7 @@ t = np.linspace(0, 30*np.pi, 10000)
 a, b = 1, 1
 w1 = np.pi
 w2 = (5*np.pi)/4
-phase = 10
+phase = np.pi / 2
 
 y = a * np.sin(w1 * t + phase)
 x = b * np.sin(w2 * t)

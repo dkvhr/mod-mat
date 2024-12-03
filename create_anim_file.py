@@ -4,8 +4,8 @@ from matplotlib.animation import FuncAnimation, PillowWriter
 
 A = 1
 B = 1
-a = 1
-b = 1
+a = 5
+b = 4
 fps = 120
 duration = 1
 frames = fps * duration
@@ -25,7 +25,8 @@ def create_animation(x_data_func, y_data_func, xlim, ylim, title, color, filenam
 
     def update(frame):
         phase_x = 2 * np.pi * frame / frames
-        phase_y = 4 * np.pi * frame/frames
+        #phase_y = 4 * np.pi * frame/frames
+        phase_y = 0
         x = x_data_func(frame, phase_x)
         y = y_data_func(frame, phase_y)
         line.set_data(x, y)
